@@ -7,7 +7,7 @@
 <body>
     <table border="1">
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <input type="text" id="inputBox" value="0" />
             </td>
         </tr>
@@ -16,28 +16,31 @@
             <td class="digitButton" onclick="digitBtnPressed(8)">8</td>
             <td class="digitButton" onclick="digitBtnPressed(9)">9</td>
             <td class="operatorButton" onclick="operatorBtnPressed('x')">x</td>
+            <td class="operatorButton" onclick="percentBtnPressed()">%</td>
         </tr>
         <tr>
             <td class="digitButton" onclick="digitBtnPressed(4)">4</td>
             <td class="digitButton" onclick="digitBtnPressed(5)">5</td>
             <td class="digitButton" onclick="digitBtnPressed(6)">6</td>
             <td class="operatorButton" onclick="operatorBtnPressed('-')">-</td>
+            <td class="operatorButton" onclick="sqrtBtnPressed()">√</td>
         </tr>
         <tr>
             <td class="digitButton" onclick="digitBtnPressed(1)">1</td>
             <td class="digitButton" onclick="digitBtnPressed(2)">2</td>
             <td class="digitButton" onclick="digitBtnPressed(3)">3</td>
             <td class="operatorButton" onclick="operatorBtnPressed('+')">+</td>
+            <td class="operatorButton" onclick="signChangeBtnPressed()">±</td>
         </tr>
         <tr>
-            <td class="digitButton" onclick="digitBtnPressed(0)" colspan="1">0</td>
+            <td class="digitButton" onclick="digitBtnPressed(0)">0</td>
             <td class="digitButton" onclick="digitBtnPressed('.')">.</td>
             <td class="ACButton" onclick="btnACPressed()">AC</td>
             <td class="operatorButton" onclick="operatorBtnPressed('/')">/</td>
+            <td class="operatorButton" onclick="btnCPressed()">C</td>
         </tr>
         <tr>
-            <td class="operatorButton" colspan="3" onclick="equalsBtnPressed()">=</td>
-            <td class="operatorButton" onclick="percentBtnPressed()">%</td>
+            <td class="operatorButton" colspan="5" onclick="equalsBtnPressed()">=</td>
         </tr>
         
     </table>
@@ -137,6 +140,45 @@
                 inputBox.value = value / 100;
             }
             newLine = false;
+        }
+
+        // Event handler for the C (Clear Entry) button
+        function btnCPressed() {
+            document.getElementById("inputBox").value = 0;
+            newLine = true;
+        }
+
+        // Event handler for the DEL (Delete) button
+        function deleteBtnPressed() {
+            var inputBox = document.getElementById("inputBox");
+            var value = inputBox.value;
+            if (value.length > 1) {
+                inputBox.value = value.slice(0, -1);
+            } else {
+                inputBox.value = "0";
+            }
+        }
+
+        // Event handler for the square root (√) button
+        function sqrtBtnPressed() {
+            var inputBox = document.getElementById("inputBox");
+            var value = parseFloat(inputBox.value);
+            if (value >= 0) {
+                inputBox.value = Math.sqrt(value);
+                newLine = true;
+            } else {
+                inputBox.value = "Error";
+                newLine = true;
+            }
+        }
+
+        // Event handler for the sign change (±) button
+        function signChangeBtnPressed() {
+            var inputBox = document.getElementById("inputBox");
+            var value = parseFloat(inputBox.value);
+            if (value !== 0) {
+                inputBox.value = -value;
+            }
         }
 
     </script>
