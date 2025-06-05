@@ -12,8 +12,10 @@ tr{
 }
 
 td{
-    width: 25vw;
+    width: 20vw;
     border: 1px solid #4e494d;
+    padding: 0;
+    box-sizing: border-box;
 }
 #inputBox{
     background-color: #4e494d;
@@ -31,4 +33,9 @@ td{
 }
 .ACButton{
     background-color: #656165;
+}
+/* Special function buttons: %, √, ±, C */
+.specialFunctionButton {
+    background-color: #d32f2f; /* A shade of red */
+    color: #fff;
 }
